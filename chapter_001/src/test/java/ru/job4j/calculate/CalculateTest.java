@@ -1,4 +1,4 @@
-package test.java.ru.job4j.calculate;
+package ru.job4j.calculate;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
@@ -19,7 +19,7 @@ public class CalculateTest {
 @Test
  public void whenTakeNameThenThreeEchoPlusName() {
     String input = "Pavel";
-    String expect = "Echo, echo, echo : Petr Arsentev"; 
+    String expect = "Echo, echo, echo : Pavel"; 
     Calculate calc = new Calculate();
     String result = calc.echo(input);
     assertThat(result, is(expect));
