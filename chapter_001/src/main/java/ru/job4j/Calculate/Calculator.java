@@ -20,9 +20,25 @@ public class Calculator {
     /**
      * Method minus.
      * @param first, second.
-     * @return first + second.
+     * @return first - second.
      */
     public double minus(double first, double second) {
         return first - second;
+    }
+    /**
+     * Method multiply.
+     * @param first second.
+     * @return first * second.
+     */
+    public double multiply(double first, double second) {
+        return first * second;
+    }
+    /**
+     * Method devide.
+     * @param first, second.
+     * @return first / second.
+     */
+    public double devide(double first, double second) {
+        return first / second;
     }
 }
