@@ -25,10 +25,24 @@ public class CalculatorTest  {
         assertThat(result, is(expected));
     }
     @Test
-    public void whenMinusOnePlusOneThenTwo()  {
+    public void whenMinusOnePlusOneThenZero()  {
         Calculator calc = new Calculator();
         double result = calc.minus(1D, 1D);
         double expected = 0D;
+        assertThat(result, is(expected));
+    }
+    @Test
+    public void whenMultiplyOnePlusOneThenOne()  {
+        Calculator calc = new Calculator();
+        double result = calc.multiply(1D, 1D);
+        double expected = 1D;
+        assertThat(result, is(expected));
+    }
+    @Test
+    public void whenDivideOnePlusOneThenOne()  {
+        Calculator calc = new Calculator();
+        double result = calc.devide(1D, 1D);
+        double expected = 1D;
         assertThat(result, is(expected));
     }
 }
