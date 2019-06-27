@@ -29,7 +29,7 @@ public class Triangle {
      * @return возможность
      */
     private boolean exist(double a, double c, double b) {
-        if ((a + b > c) || (a + c > b) || (c + b > a)){
+        if ((a + b > c) || (a + c > b) || (c + b > a)) {
             return true;
         }
         return false;
