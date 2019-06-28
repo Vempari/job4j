@@ -11,4 +11,10 @@ public class MaxTest {
         int result = max.max(1, 2);
         assertThat(result, is(2));
     }
+    @Test
+    public void whenMax10To5Then10() {
+        Max max = new Max();
+        int result = max.max(10, 5);
+        assertThat(result, is(10));
+    }
 }
