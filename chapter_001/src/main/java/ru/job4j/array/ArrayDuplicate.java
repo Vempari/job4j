@@ -12,6 +12,7 @@ public class ArrayDuplicate {
                     array[j] = array[array.length - 1 - count];
                     array[array.length - 1 - count] = sub;
                     count++;
+                    j--;
                 }
             }
         }
