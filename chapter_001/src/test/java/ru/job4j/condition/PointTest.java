@@ -17,6 +17,17 @@ public class PointTest {
     }
 
     @Test
+    public void whenOneAndTenThenNine() {
+        Point first = new Point(0, 1, 0);
+        Point second = new Point(0, 10, 0);
+        double result = first.distance3d(second);
+        first.info3d();
+        second.info3d();
+        System.out.println(String.format("Result is %s", result));
+        assertThat(result, is(9D));
+    }
+
+    @Test
     public void whenCheckItself() {
         Point point = new Point(0, 0);
         double result = point.distance(point);
