@@ -17,4 +17,16 @@ public class MaxTest {
         int result = max.max(10, 5);
         assertThat(result, is(10));
     }
+    @Test
+    public void whenMax10To5To2Then10() {
+        Max max = new Max();
+        int result = max.max(10, 5, 2);
+        assertThat(result, is(10));
+    }
+    @Test
+    public void whenMax10To5To15To7Then15() {
+        Max max = new Max();
+        int result = max.max(10, 5, 15, 7);
+        assertThat(result, is(15));
+    }
 }
