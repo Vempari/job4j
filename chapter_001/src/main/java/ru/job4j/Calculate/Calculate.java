@@ -3,9 +3,9 @@ package ru.job4j.calculate;
 /**
  * Calculate.
  *
- * @author Pavel Kozhukhovskii.(Vempari_2@mail.ru)
+ * @author Pavel Kozhukhovskiy(Vempari_2@mail.ru)
  * @version $Id$
- * @since 0.1
+ * @since 0.2
  */
 
 public class Calculate {
@@ -15,6 +15,10 @@ public class Calculate {
      */
     public static void main(String[] args) {
         System.out.println("Hello, job4j");
+		System.out.println("Что такое");
+		System.out.println("Что такое");
+		System.out.println("Что такое");
+		System.out.println("Что такое");
     }
     /**
 	 * Method echo.
