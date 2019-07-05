@@ -7,7 +7,7 @@ public class TestAsk {
         int i = 0;
         int j = 0;
         while (l < a3.length) {
-            if(i == a1.length) {
+            if (i == a1.length) {
                 a3[l] = a2[j];
                 j++;
             } else if (j == a2.length) {
@@ -21,6 +21,7 @@ public class TestAsk {
                 j++;
             }
             l++;
+            System.out.println("tK NU TUT BUDET HUY");
         }
 
         return a3;
