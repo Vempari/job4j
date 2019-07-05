@@ -1,11 +1,17 @@
 package ru.job4j.professions;
 
-public class Surgeon extends Doctor {
+ class Surgeon extends Doctor {
+
+
+     public Surgeon(String name, String surname, String education, int age) {
+        super(name, surname, education, age);
+    }
+
     @Override
-    public String diagnose() {
+    protected String diagnose() {
         return null; // хирургический диагноз
     }
-    public String operation() {
+    protected String operation() {
         return null;
     }
 }
