@@ -62,16 +62,22 @@ public class StartUI {
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 this.createItem();
+                exit = true;
             } else if (SHOW.equals(answer)) {
                 this.showAll();
+                exit = true;
             } else if (EDIT.equals(answer)) {
                 this.editItem();
+                exit = true;
             } else if (DELEATE.equals(answer)) {
-                this.deleateItem();
+                this.deleteItem();
+                exit = true;
             } else if (FINDID.equals(answer)) {
                 this.findByID();
+                exit = true;
             } else if (FINDNAME.equals(answer)) {
                 this.findByName();
+                exit = true;
             } else if (EXIT.equals(answer)) {
                 System.out.println("Всего доброго!");
                 exit = true;
@@ -108,12 +114,12 @@ public class StartUI {
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
     }
 
-    private void deleateItem() {
+    private void deleteItem() {
         String id = this.input.ask("Введите ID: ");
         this.tracker.delete(id);
     }
 
-    private void showAll(){
+    private void showAll() {
         this.tracker.findAll();
     }
 
