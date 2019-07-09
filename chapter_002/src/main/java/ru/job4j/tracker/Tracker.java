@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -27,9 +27,11 @@ public class Tracker {
         this.items[this.position++] = item;
         return item;
     }
-
+    /**
+     * Метод заменяет элемент в массиве, находя его по ID.
+     */
     public boolean replace(String id, Item item) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 this.items[i] = item;
                 item.setId(id);
@@ -38,39 +40,44 @@ public class Tracker {
         }
         return false;
     }
-
+    /**
+     * Метод удаляет элемент.
+     */
     public boolean delete(String id) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i, this.items, 0, this.items.length - i);
+                System.arraycopy(this.items, i + 1, this.items, i, 1);
+                this.items[--position] = null;
                 return true;
             }
         }
         return false;
     }
-
+    /**
+     * Метод находит все существующие объекты в массиве. Возвращает новый массив состоящий только из этих элементов.
+     */
     public Item[] findAll() {
-        ArrayList result = new ArrayList();
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i] != null) {
-                result.add(this.items[i]);
-            }
-        }
-        return (Item[]) result.toArray(new Item[result.size()]);
+        return Arrays.copyOf(this.items, this.position);
     }
-
+    /**
+     * Метод находит все элементы с одинаковым полем Name. Возвращает массив состоящий из этих элементов.
+     */
     public Item[] findByName(String key) {
-        ArrayList result = new ArrayList();
-        for (int i = 0; i < this.items.length; i++) {
+        Item[] res = new Item[this.position];
+        int count = 0;
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName().equals(key)) {
-                result.add(this.items[i]);
+                res[count] = this.items[i];
+                count++;
             }
         }
-        return (Item[]) result.toArray(new Item[result.size()]);
+        return Arrays.copyOf(res, count);
     }
-
+    /**
+     * Метод находит элемент в массиве по ID.
+     */
     public Item findById(String id) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 return this.items[i];
             }
