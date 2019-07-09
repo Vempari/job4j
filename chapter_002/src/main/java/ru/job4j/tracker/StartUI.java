@@ -61,27 +61,17 @@ public class StartUI {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
-                //добавление заявки вынесено в отдельный метод.
                 this.createItem();
             } else if (SHOW.equals(answer)) {
-                this.tracker.findAll();
+                this.showAll();
             } else if (EDIT.equals(answer)) {
-                //id коппируется методом replace.
-                String id = this.input.ask("Введите ID заявки которую хотите изменить: ");
-                System.out.println("------------ Добавление новой заявки --------------");
-                String name = this.input.ask("Введите имя заявки :");
-                String desc = this.input.ask("Введите описание заявки :");
-                Item item = new Item(name, desc, 123L);
-                this.tracker.replace(id, item);
+                this.editItem();
             } else if (DELEATE.equals(answer)) {
-                String id = this.input.ask("Введите ID: ");
-                this.tracker.delete(id);
+                this.deleateItem();
             } else if (FINDID.equals(answer)) {
-                String id = this.input.ask("Введите ID: ");
-                this.tracker.findById(id);
+                this.findByID();
             } else if (FINDNAME.equals(answer)) {
-                String name = this.input.ask("Введите имя: ");
-                this.tracker.findByName(name);
+                this.findByName();
             } else if (EXIT.equals(answer)) {
                 System.out.println("Всего доброго!");
                 exit = true;
@@ -99,6 +89,32 @@ public class StartUI {
         Item item = new Item(name, desc, 123L);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+    private void findByID() {
+        String id = this.input.ask("Введите ID: ");
+        this.tracker.findById(id);
+    }
+    private void findByName() {
+        String name = this.input.ask("Введите имя: ");
+        this.tracker.findByName(name);
+    }
+    private void editItem() {
+        String id = this.input.ask("Введите ID заявки которую хотите изменить: ");
+        System.out.println("------------ Добавление новой заявки --------------");
+        String name = this.input.ask("Введите имя заявки :");
+        String desc = this.input.ask("Введите описание заявки :");
+        Item item = new Item(name, desc, 123L);
+        this.tracker.replace(id, item);
+        System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+
+    private void deleateItem() {
+        String id = this.input.ask("Введите ID: ");
+        this.tracker.delete(id);
+    }
+
+    private void showAll(){
+        this.tracker.findAll();
     }
 
     private void showMenu() {
