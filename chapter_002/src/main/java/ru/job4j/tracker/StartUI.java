@@ -145,7 +145,13 @@ public class StartUI {
     }
 
     private void showAll() {
-        this.tracker.findAll();
+        Item[] array = this.tracker.findAll();
+        for (Item counter : array) {
+            System.out.println("----------- Имя: " + counter.getName() + "-----------");
+            System.out.println("----------- decs: " + counter.getDecs() + "-----------");
+            System.out.println("----------- time: " + counter.getTime() + "-----------");
+            System.out.println("----------- ID: " + counter.getId() + "-----------");
+        }
     }
 
     private void showMenu() {

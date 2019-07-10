@@ -1,10 +1,26 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.core.Is;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.StringJoiner;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
+    }
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+    }
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
@@ -59,6 +75,30 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test name33"));
     }
-
+    @Test
+    public void whenUserFindAllPrintAll() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name33", "desc", 12L));
+        ConsoleInput input = new StubInput(new String[]{"1"});
+        new StartUI(input, tracker).init();
+        assertThat(
+                new String(out.toByteArray()),
+                Is.is(
+                        new StringBuilder()
+                                .append("Меню.\n")
+                                .append("0. Add new Item\n")
+                                .append("1. Show all items\n")
+                                .append("2. Edit item\n")
+                                .append("3. Delete item\n")
+                                .append("4. Find item by Id\n")
+                                .append("5. Find items by name\n")
+                                .append("6. Exit Program\n")
+                                .append("----------- Имя: test name33-----------\n")
+                                .append("----------- decs: desc-----------\n")
+                                .append("----------- time: 12-----------\n")
+                                .append("----------- ID: " + item.getId() + "-----------\n")
+                                .toString()
+                ));
+    }
 
 }
