@@ -21,6 +21,9 @@ public class StartUITest {
     public void backOutput() {
         System.setOut(this.stdout);
     }
+    private static final String MENU =
+        "Меню.\r\n0. Add new Item\r\n1. Show all items\r\n2. Edit item\r\n3. Delete item\r\n4. Find item by Id\r\n5. Find items by name\r\n6. Exit Program\r\n";
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
@@ -61,7 +64,17 @@ public class StartUITest {
         tracker.add(new Item("test name222", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"4", item.getId()});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("test name"));
+        assertThat(
+                new String(out.toByteArray()),
+                Is.is(
+                        new StringBuilder()
+                                .append(MENU)
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .toString()
+                ));
     }
     @Test
     public void whenUserAddItemThenFindByName() {
@@ -73,8 +86,19 @@ public class StartUITest {
         tracker.add(new Item("test name4", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"5", item.getName()});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("test name33"));
+        assertThat(
+                new String(out.toByteArray()),
+                Is.is(
+                        new StringBuilder()
+                                .append(MENU)
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .toString()
+                ));
     }
+
     @Test
     public void whenUserFindAllPrintAll() {
         Tracker tracker = new Tracker();
@@ -85,18 +109,11 @@ public class StartUITest {
                 new String(out.toByteArray()),
                 Is.is(
                         new StringBuilder()
-                                .append("Меню.\n")
-                                .append("0. Add new Item\n")
-                                .append("1. Show all items\n")
-                                .append("2. Edit item\n")
-                                .append("3. Delete item\n")
-                                .append("4. Find item by Id\n")
-                                .append("5. Find items by name\n")
-                                .append("6. Exit Program\n")
-                                .append("----------- Имя: test name33-----------\n")
-                                .append("----------- decs: desc-----------\n")
-                                .append("----------- time: 12-----------\n")
-                                .append("----------- ID: " + item.getId() + "-----------\n")
+                                .append(MENU)
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
                                 .toString()
                 ));
     }
