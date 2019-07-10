@@ -98,11 +98,16 @@ public class StartUI {
     }
     private void findByID() {
         String id = this.input.ask("Введите ID: ");
-        Item item = this.tracker.findById(id);
-        System.out.println("----------- Имя: " + item.getName() + "-----------");
-        System.out.println("----------- decs: " + item.getDecs() + "-----------");
-        System.out.println("----------- time: " + item.getTime() + "-----------");
-        System.out.println("----------- ID: " + item.getId() + "-----------");
+        if(id != null) {
+            Item item = this.tracker.findById(id);
+            System.out.println("----------- Имя: " + item.getName() + "-----------");
+            System.out.println("----------- decs: " + item.getDecs() + "-----------");
+            System.out.println("----------- time: " + item.getTime() + "-----------");
+            System.out.println("----------- ID: " + item.getId() + "-----------");
+        }
+        else {
+            System.out.println("Нужно ввести существующий ID");
+        }
     }
     private void findByName() {
         String name = null;
