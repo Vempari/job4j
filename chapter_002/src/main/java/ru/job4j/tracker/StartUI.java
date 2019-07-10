@@ -98,11 +98,24 @@ public class StartUI {
     }
     private void findByID() {
         String id = this.input.ask("Введите ID: ");
-        this.tracker.findById(id);
+        Item item = this.tracker.findById(id);
+        System.out.println("----------- Имя: " + item.getName() + "-----------");
+        System.out.println("----------- decs: " + item.getDecs() + "-----------");
+        System.out.println("----------- time: " + item.getTime() + "-----------");
+        System.out.println("----------- ID: " + item.getId() + "-----------");
     }
     private void findByName() {
-        String name = this.input.ask("Введите имя: ");
-        this.tracker.findByName(name);
+        String name = null;
+        while (name == null) {
+            name = this.input.ask("Введите имя: ");
+        }
+        Item[] array = this.tracker.findByName(name);
+        for (Item counter : array) {
+            System.out.println("----------- Имя: " + counter.getName() + "-----------");
+            System.out.println("----------- decs: " + counter.getDecs() + "-----------");
+            System.out.println("----------- time: " + counter.getTime() + "-----------");
+            System.out.println("----------- ID: " + counter.getId() + "-----------");
+        }
     }
     private void editItem() {
         String id = this.input.ask("Введите ID заявки которую хотите изменить: ");
@@ -110,13 +123,25 @@ public class StartUI {
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc, 123L);
-        this.tracker.replace(id, item);
-        System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+        boolean answer = this.tracker.replace(id, item);
+        if (answer == true) {
+            System.out.println("-----------Операция прошла успешно-----------");
+            System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+        }
+        else {
+            System.out.println("-----------Произошла ошибка, попробуйте еще раз-----------");
+        }
     }
 
     private void deleteItem() {
         String id = this.input.ask("Введите ID: ");
-        this.tracker.delete(id);
+        boolean answer = this.tracker.delete(id);
+        if (answer == true) {
+            System.out.println("-----------Операция прошла успешно-----------");
+        }
+        else {
+            System.out.println("-----------Произошла ошибка, попробуйте еще раз-----------");
+        }
     }
 
     private void showAll() {
