@@ -22,35 +22,13 @@ public class StartUITest {
         System.setOut(this.stdout);
     }
     private static final String MENU =
-        "Меню.\r\n0. Add new Item\r\n1. Show all items\r\n2. Edit item\r\n3. Delete item\r\n4. Find item by Id\r\n5. Find items by name\r\n6. Exit Program\r\n";
-
-    @Test
-    public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();     // создаём Tracker
-        ConsoleInput input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-    }
-
-    @Test
-    public void whenUpdateThenTrackerHasUpdatedValue() {
-        // создаём Tracker
-        Tracker tracker = new Tracker();
-        //Напрямую добавляем заявку
-        Item item = tracker.add(new Item("test name", "desc", 12L));
-        //создаём StubInput с последовательностью действий(производим замену заявки)
-        ConsoleInput input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
-        // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
-        // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
-    }
+        "0. Add new Item\n1. Show all items\n2. Edit item\n3. Delete item\n4. Find items by Id\n5. Find by name\n6. Exit Program\n";
 
     @Test
     public void whenUserAddItemThenDeleteItTrackerDoesntHaveIt() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 12L));
-        ConsoleInput input = new StubInput(new String[]{"3", item.getId()});
+        ConsoleInput input = new StubInput(new String[]{"3", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll(), is(new Item[0]));
     }
@@ -62,17 +40,17 @@ public class StartUITest {
         tracker.add(new Item("test name3", "desc", 12L));
         Item item = tracker.add(new Item("test name", "desc", 12L));
         tracker.add(new Item("test name222", "desc", 12L));
-        ConsoleInput input = new StubInput(new String[]{"4", item.getId()});
+        ConsoleInput input = new StubInput(new String[]{"4", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\n")
+                                .append("----------- time: " + item.getTime() + "-----------\n")
+                                .append("----------- ID: " + item.getId() + "-----------\n")
                                 .toString()
                 ));
     }
@@ -84,17 +62,17 @@ public class StartUITest {
         tracker.add(new Item("test name2", "desc", 12L));
         tracker.add(new Item("test name3", "desc", 12L));
         tracker.add(new Item("test name4", "desc", 12L));
-        ConsoleInput input = new StubInput(new String[]{"5", item.getName()});
+        ConsoleInput input = new StubInput(new String[]{"5", item.getName(), "y"});
         new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\n")
+                                .append("----------- time: " + item.getTime() + "-----------\n")
+                                .append("----------- ID: " + item.getId() + "-----------\n")
                                 .toString()
                 ));
     }
@@ -103,17 +81,17 @@ public class StartUITest {
     public void whenUserFindAllPrintAll() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name33", "desc", 12L));
-        ConsoleInput input = new StubInput(new String[]{"1"});
+        ConsoleInput input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\n")
+                                .append("----------- time: " + item.getTime() + "-----------\n")
+                                .append("----------- ID: " + item.getId() + "-----------\n")
                                 .toString()
                 ));
     }
