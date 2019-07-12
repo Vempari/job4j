@@ -98,14 +98,13 @@ public class StartUI {
     }
     private void findByID() {
         String id = this.input.ask("Введите ID: ");
-        if(id != null) {
+        if (id != null) {
             Item item = this.tracker.findById(id);
             System.out.println("----------- Имя: " + item.getName() + "-----------");
             System.out.println("----------- decs: " + item.getDecs() + "-----------");
             System.out.println("----------- time: " + item.getTime() + "-----------");
             System.out.println("----------- ID: " + item.getId() + "-----------");
-        }
-        else {
+        } else {
             System.out.println("Нужно ввести существующий ID");
         }
     }
@@ -129,11 +128,10 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc, 123L);
         boolean answer = this.tracker.replace(id, item);
-        if (answer == true) {
+        if (answer) {
             System.out.println("-----------Операция прошла успешно-----------");
             System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
-        }
-        else {
+        } else {
             System.out.println("-----------Произошла ошибка, попробуйте еще раз-----------");
         }
     }
@@ -141,10 +139,9 @@ public class StartUI {
     private void deleteItem() {
         String id = this.input.ask("Введите ID: ");
         boolean answer = this.tracker.delete(id);
-        if (answer == true) {
+        if (answer) {
             System.out.println("-----------Операция прошла успешно-----------");
-        }
-        else {
+        } else {
             System.out.println("-----------Произошла ошибка, попробуйте еще раз-----------");
         }
     }
