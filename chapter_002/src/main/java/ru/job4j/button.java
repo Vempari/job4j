@@ -1,7 +1,8 @@
 package ru.job4j;
 import javax.swing.*;
+import java.lang.String;
 
-public class button {
+public class button{
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         JButton button = new JButton("Click me");

@@ -60,6 +60,16 @@ public class MenuTracker {
         this.actions.get(key).execute(this.input, this.tracker);
     }
 
+    public int[] getKeys() {
+        int[] array = new int[getActionsLentgh()];
+        int i = 0;
+        for (UserAction action : this.actions) {
+            array[i] = action.key();
+            i++;
+        }
+        return array;
+    }
+
     /**
      * Метод выводит на экран меню.
      */

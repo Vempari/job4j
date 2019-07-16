@@ -79,7 +79,7 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
-
+    private int[] array = new int[] {0, 1, 2, 3, 4, 5, 6};
     /**
      * Основой цикл программы.
      */
@@ -88,7 +88,7 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", menu.getKeys()));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
     /**
@@ -96,6 +96,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
