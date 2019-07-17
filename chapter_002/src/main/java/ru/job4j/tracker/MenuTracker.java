@@ -42,13 +42,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem());
-        this.actions.add(new FindAllItems());
-        this.actions.add(new UpdateItem());
-        this.actions.add(new DeleteItem());
-        this.actions.add(new FindItemById());
-        this.actions.add(new FindByNameItems());
-        this.actions.add(new Exit());
+        this.actions.add(new AddItem(0, "Add new Item"));
+        this.actions.add(new FindAllItems(1, "Show all items"));
+        this.actions.add(new UpdateItem(2, "Edit item"));
+        this.actions.add(new DeleteItem(3, "Delete item"));
+        this.actions.add(new FindItemById(4, "Find items by Id"));
+        this.actions.add(new FindByNameItems(5, "Find by name"));
+        this.actions.add(new Exit(6, "Exit Program"));
     }
 
     /**
@@ -59,24 +59,13 @@ public class MenuTracker {
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);
     }
-
-    public int[] getKeys() {
-        int[] array = new int[getActionsLentgh()];
-        int i = 0;
-        for (UserAction action : this.actions) {
-            array[i] = action.key();
-            i++;
-        }
-        return array;
-    }
-
     /**
      * Метод выводит на экран меню.
      */
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.key() + ". " + action.info());
+                System.out.println(action.info());
             }
         }
     }

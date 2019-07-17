@@ -1,11 +1,9 @@
 package ru.job4j.tracker;
 
-public class FindByNameItems implements UserAction {
-    @Override
-    public int key() {
-        return StartUI.getFINDNAME();
+public class FindByNameItems extends BaseAction {
+    protected FindByNameItems(int key, String name) {
+        super(key, name);
     }
-
     @Override
     public void execute(Input input, Tracker tracker) {
         String name = null;
@@ -19,10 +17,5 @@ public class FindByNameItems implements UserAction {
             System.out.println("----------- time: " + counter.getTime() + "-----------");
             System.out.println("----------- ID: " + counter.getId() + "-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Find by name";
     }
 }

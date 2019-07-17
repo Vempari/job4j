@@ -1,12 +1,10 @@
 package ru.job4j.tracker;
 
-public class FindItemById implements UserAction {
+public class FindItemById extends BaseAction {
 
-    @Override
-    public int key() {
-        return StartUI.getFINDID();
+    public FindItemById(int key, String name) {
+        super(key, name);
     }
-
     @Override
     public void execute(Input input, Tracker tracker) {
         String id = input.ask("Введите ID: ");
@@ -19,10 +17,5 @@ public class FindItemById implements UserAction {
         } else {
             System.out.println("Нужно ввести существующий ID");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Find items by Id";
     }
 }

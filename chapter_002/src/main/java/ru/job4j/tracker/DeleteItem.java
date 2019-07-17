@@ -1,11 +1,9 @@
 package ru.job4j.tracker;
 
-public class DeleteItem implements UserAction {
-    @Override
-    public int key() {
-        return StartUI.getDELEATE();
+public class DeleteItem extends BaseAction {
+    public DeleteItem(int key, String name) {
+        super(key, name);
     }
-
     @Override
     public void execute(Input input, Tracker tracker) {
         String id = input.ask("Введите ID: ");
@@ -15,10 +13,5 @@ public class DeleteItem implements UserAction {
         } else {
             System.out.println("-----------Произошла ошибка, попробуйте еще раз-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Delete item";
     }
 }

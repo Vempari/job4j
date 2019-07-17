@@ -1,11 +1,10 @@
 package ru.job4j.tracker;
 
-public class FindAllItems implements UserAction {
-    @Override
-    public int key() {
-        return StartUI.getSHOW();
-    }
+public class FindAllItems extends BaseAction {
 
+    public FindAllItems(int key, String name) {
+        super(key, name);
+    }
     @Override
     public void execute(Input input, Tracker tracker) {
         Item[] array = tracker.findAll();
@@ -15,10 +14,5 @@ public class FindAllItems implements UserAction {
             System.out.println("----------- time: " + counter.getTime() + "-----------");
             System.out.println("----------- ID: " + counter.getId() + "-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Show all items";
     }
 }
