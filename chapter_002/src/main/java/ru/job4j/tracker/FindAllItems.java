@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 public class FindAllItems extends BaseAction {
 
     public FindAllItems(int key, String name) {
@@ -7,7 +9,7 @@ public class FindAllItems extends BaseAction {
     }
     @Override
     public void execute(Input input, Tracker tracker) {
-        Item[] array = tracker.findAll();
+        ArrayList<Item> array = tracker.findAll();
         for (Item counter : array) {
             System.out.println("----------- Имя: " + counter.getName() + "-----------");
             System.out.println("----------- decs: " + counter.getDecs() + "-----------");

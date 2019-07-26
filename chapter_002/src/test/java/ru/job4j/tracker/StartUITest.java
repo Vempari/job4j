@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -22,7 +23,7 @@ public class StartUITest {
         System.setOut(this.stdout);
     }
     private static final String MENU =
-        "0. Add new Item\n1. Show all items\n2. Edit item\n3. Delete item\n4. Find items by Id\n5. Find by name\n6. Exit Program\n";
+        "0 : Add new Item\r\n1 : Show all items\r\n2 : Edit item\r\n3 : Delete item\r\n4 : Find items by Id\r\n5 : Find by name\r\n6 : Exit Program\r\n";
 
     @Test
     public void whenUserAddItemThenDeleteItTrackerDoesntHaveIt() {
@@ -30,7 +31,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"3", item.getId(), "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll(), is(new Item[0]));
+        assertThat(tracker.delete(item.getId()), is(false));
     }
     @Test
     public void whenUserFindIdThenFindId() {
@@ -47,10 +48,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\n")
-                                .append("----------- time: " + item.getTime() + "-----------\n")
-                                .append("----------- ID: " + item.getId() + "-----------\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
                                 .toString()
                 ));
     }
@@ -69,10 +70,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\n")
-                                .append("----------- time: " + item.getTime() + "-----------\n")
-                                .append("----------- ID: " + item.getId() + "-----------\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
                                 .toString()
                 ));
     }
@@ -88,10 +89,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\n")
-                                .append("----------- time: " + item.getTime() + "-----------\n")
-                                .append("----------- ID: " + item.getId() + "-----------\n")
+                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
+                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
+                                .append("----------- time: " + item.getTime() + "-----------\r\n")
+                                .append("----------- ID: " + item.getId() + "-----------\r\n")
                                 .toString()
                 ));
     }

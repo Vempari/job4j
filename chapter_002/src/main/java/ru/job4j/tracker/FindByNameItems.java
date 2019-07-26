@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 public class FindByNameItems extends BaseAction {
     protected FindByNameItems(int key, String name) {
         super(key, name);
@@ -10,7 +12,7 @@ public class FindByNameItems extends BaseAction {
         while (name == null) {
             name = input.ask("Введите имя: ");
         }
-        Item[] array = tracker.findByName(name);
+        ArrayList<Item> array = tracker.findByName(name);
         for (Item counter : array) {
             System.out.println("----------- Имя: " + counter.getName() + "-----------");
             System.out.println("----------- decs: " + counter.getDecs() + "-----------");

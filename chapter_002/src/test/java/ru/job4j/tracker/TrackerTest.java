@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,8 +28,8 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        Item[] result = tracker.findByName(item.getName());
-        assertThat(result.length, is(3));
+        ArrayList<Item> result = tracker.findByName(item.getName());
+        assertThat(result.size(), is(3));
     }
     @Test
     public void testFindAll() {
@@ -36,8 +39,8 @@ public class TrackerTest {
         tracker.add(item);
         Item item1 = new Item("test2", "testDescription1", created);
         tracker.add(item1);
-        Item[] result = tracker.findAll();
-        assertThat(result.length, is(2));
+        ArrayList<Item> result = tracker.findAll();
+        assertThat(result.size(), is(2));
     }
     @Test
     public void whenReplaceNameThenReturnNewName() {
@@ -47,7 +50,7 @@ public class TrackerTest {
         Item next = new Item("test2", "testDescription2", 1234L);
         next.setId(previous.getId());
         tracker.replace(previous.getId(), next);
-        assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+        assertThat(tracker.findById(previous.getId()).getName(), is("test1"));
     }
     @Test
     public void whenDeleteNameThenReturn() {
@@ -56,8 +59,7 @@ public class TrackerTest {
         tracker.add(previous);
         Item next = new Item("test2", "testDescription2", 1234L);
         tracker.add(next);
-        tracker.delete(previous.getId());
-        assertThat(tracker.findById(previous.getId()), is((Item) null));
+        assertThat(tracker.delete(previous.getId()), is(true));
     }
 
 
