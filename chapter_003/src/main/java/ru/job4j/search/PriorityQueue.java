@@ -14,7 +14,7 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         int index = task.getPriority();
-        this.tasks.add(index-1, task);
+        this.tasks.add(index - 1, task);
     }
 
     public Task take() {
