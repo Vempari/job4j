@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class UserSort {
 
     public TreeSet<User> sortSet(List<User> list) {
-        TreeSet<User> UserSet = new TreeSet<>(Comparator.comparing(User::getAge));
+        TreeSet<User> UserSet = new TreeSet<>();
         UserSet.addAll(list);
         return UserSet;
     }
