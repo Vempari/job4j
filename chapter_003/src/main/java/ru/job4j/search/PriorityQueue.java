@@ -12,16 +12,19 @@ public class PriorityQueue {
      * Для вставик использовать add(int index, E value)
      * @param task задача
      */
-    public void put(Task task) {
+    public boolean put(Task task) {
         if (tasks.size() == 0) {
-            this.tasks.add(0, task);
+            this.tasks.add(task);
+            return true;
         }
         for (int i = 0; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 this.tasks.add(i, task);
-                break;
+                return true;
             }
         }
+        this.tasks.add(task);
+        return true;
     }
 
     public Task take() {
