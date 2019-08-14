@@ -5,12 +5,12 @@ import java.util.*;
 public class UserSort {
 
     public TreeSet<User> sortSet(List<User> list) {
-        TreeSet<User> UserSet = new TreeSet<>();
-        UserSet.addAll(list);
-        return UserSet;
+        TreeSet<User> userSet = new TreeSet<>();
+        userSet.addAll(list);
+        return userSet;
     }
 
-    public List<User> sortNameLength (List<User> list) {
+    public List<User> sortNameLength(List<User> list) {
         List<User> users = new ArrayList<>();
         users.addAll(list);
         users.sort(
@@ -26,7 +26,7 @@ public class UserSort {
         return users;
     }
 
-    public List<User> sortByAllFields (List<User> list) {
+    public List<User> sortByAllFields(List<User> list) {
         List<User> users = new ArrayList<>();
         users.addAll(list);
         users.sort(

@@ -7,23 +7,23 @@ import static org.junit.Assert.assertThat;
 
 public class SingletonTest {
     @Test
-    public void TrackerSingleTest() {
+    public void trackerSingleTest() {
         Item item = new Item("Test name", "Test decs", 123L);
         assertThat(item, is(TrackerSingle.INSTANCE.add(item)));
     }
     @Test
-    public void TrackerSingleStaticTest() {
+    public void trackerSingleStaticTest() {
         Item item = new Item("Test name", "Test decs", 123L);
         TrackerSingleStatic tracker = TrackerSingleStatic.getInstance();
         assertThat(item, is(tracker.add(item)));
     }
     @Test
-    public void TrackerSingleStaticFinalTest() {
+    public void trackerSingleStaticFinalTest() {
         Item item = new Item("Test name", "Test decs", 123L);
         assertThat(item, is(TrackerSingleStaticFinal.getInstance().add(item)));
     }
     @Test
-    public void TrackerSingleStaticPrivateTest() {
+    public void trackerSingleStaticPrivateTest() {
         Item item = new Item("Test name", "Test decs", 123L);
         assertThat(item, is(TrackerSingleStaticPrivate.getInstance().add(item)));
     }
