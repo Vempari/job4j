@@ -33,3 +33,5 @@ http://job4j.ru/
 До августа 2020;
 Релокация в Канаду\Австралию на доп вышку.
 *Успех*
+
+[![Build Status](https://travis-ci.org/Vempari/job4j.svg?branch=master)](https://travis-ci.org/Vempari/job4j)
