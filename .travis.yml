@@ -2,9 +2,7 @@
 language: java
 jdk:
   - openjdk11
-env:
-  global:
-    - CODECOV_TOKEN="ddb8ec67-a5ac-46db-93e2-ea77bcea4dae"
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
@@ -20,3 +18,6 @@ notifications:
       -Vempari_2@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
+env:
+  global:
+    - CODECOV_TOKEN="ddb8ec67-a5ac-46db-93e2-ea77bcea4dae"
