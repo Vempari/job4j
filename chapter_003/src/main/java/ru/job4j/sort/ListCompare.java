@@ -8,7 +8,8 @@ public class ListCompare implements Comparator<String> {
         int result = 0;
         if (left.equals(right)) {
             return result;
-        } else {
+        }
+        else {
             char[] leftArray = left.toCharArray();
             char[] rightArray = right.toCharArray();
             int length = (leftArray.length > rightArray.length) ? leftArray.length : rightArray.length;
@@ -17,13 +18,14 @@ public class ListCompare implements Comparator<String> {
                     if (leftArray[i] > rightArray[i]) {
                         result = 1;
                         break;
-                    } else if (rightArray[i] > leftArray[i]) {
+                    }
+                    else if (rightArray[i] > leftArray[i]) {
                         result = -1;
                         break;
                     }
                 }
             } catch (Exception e) {
-                return -1;
+                result = -1;
             }
         }
         return result;

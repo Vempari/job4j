@@ -23,7 +23,7 @@ public class StartUITest {
         System.setOut(this.stdout);
     }
     private static final String MENU =
-        "0 : Add new Item\r\n1 : Show all items\r\n2 : Edit item\r\n3 : Delete item\r\n4 : Find items by Id\r\n5 : Find by name\r\n6 : Exit Program\r\n";
+        "0 : Add new Item" + System.lineSeparator() + "1 : Show all items" + System.lineSeparator() + "2 : Edit item" + System.lineSeparator() + "3 : Delete item" + System.lineSeparator() + "4 : Find items by Id" + System.lineSeparator() + "5 : Find by name" + System.lineSeparator() + "6 : Exit Program" + System.lineSeparator();
 
     @Test
     public void whenUserAddItemThenDeleteItTrackerDoesntHaveIt() {
@@ -48,10 +48,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------" + System.lineSeparator())
+                                .append("----------- decs: " + item.getDecs() + "-----------" + System.lineSeparator())
+                                .append("----------- time: " + item.getTime() + "-----------" + System.lineSeparator())
+                                .append("----------- ID: " + item.getId() + "-----------" + System.lineSeparator())
                                 .toString()
                 ));
     }
@@ -70,10 +70,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------" + System.lineSeparator())
+                                .append("----------- decs: " + item.getDecs() + "-----------" + System.lineSeparator())
+                                .append("----------- time: " + item.getTime() + "-----------" + System.lineSeparator())
+                                .append("----------- ID: " + item.getId() + "-----------" + System.lineSeparator())
                                 .toString()
                 ));
     }
@@ -89,10 +89,10 @@ public class StartUITest {
                 Is.is(
                         new StringBuilder()
                                 .append(MENU)
-                                .append("----------- Имя: " + item.getName() + "-----------\r\n")
-                                .append("----------- decs: " + item.getDecs() + "-----------\r\n")
-                                .append("----------- time: " + item.getTime() + "-----------\r\n")
-                                .append("----------- ID: " + item.getId() + "-----------\r\n")
+                                .append("----------- Имя: " + item.getName() + "-----------" + System.lineSeparator())
+                                .append("----------- decs: " + item.getDecs() + "-----------" + System.lineSeparator())
+                                .append("----------- time: " + item.getTime() + "-----------" + System.lineSeparator())
+                                .append("----------- ID: " + item.getId() + "-----------" + System.lineSeparator())
                                 .toString()
                 ));
     }
