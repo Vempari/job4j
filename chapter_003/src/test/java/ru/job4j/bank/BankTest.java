@@ -1,12 +1,10 @@
-package ru.job4j.Bank;
+package ru.job4j.bank;
 
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BankTest {

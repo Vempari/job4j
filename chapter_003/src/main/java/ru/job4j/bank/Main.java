@@ -1,4 +1,4 @@
-package ru.job4j.Bank;
+package ru.job4j.bank;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class Main {
             }
         }
     }
-    public List<Account> getUserAccounts (String passport) {
+    public List<Account> getUserAccounts(String passport) {
         List<Account> list = new ArrayList<>();
         for (User user : deposit.keySet()) {
             if (user.getPassport().equals(passport)) {
@@ -36,34 +36,34 @@ public class Main {
         }
         return list;
     }
-    public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean result = false;
-        User srcUser = null;
-        User destUser = null;
-        int srcIndex = 0;
-        int destIndex = 0;
-        for (User user : deposit.keySet()) {
-            if (user.getPassport().equals(srcPassport)) {
-                srcUser = user;
-            }
-            if (user.getPassport().equals(destPassport)) {
-                destUser = user;
-            }
-        }
-        for (int i = 0; i < deposit.get(srcUser).size(); i++) {
-            if (deposit.get(srcUser).get(i).getRequisites().equals(srcRequisite)) {
-                srcIndex = i;
-            }
-        }
-        for (int i = 0; i < deposit.get(destUser).size(); i++) {
-            if (deposit.get(destUser).get(i).getRequisites().equals(destRequisite)) {
-                destIndex = i;
-            }
-        }
+        User srcUser = findUser(srcPassport);
+        User destUser = findUser(destPassport);
+        int srcIndex = findIndex(srcRequisite, srcUser);
+        int destIndex = findIndex(destRequisite, destUser);
         if (deposit.get(srcUser).get(srcIndex).getValue() > amount) {
             deposit.get(srcUser).get(srcIndex).setValue(deposit.get(srcUser).get(srcIndex).getValue() - amount);
             deposit.get(destUser).get(destIndex).setValue(deposit.get(destUser).get(destIndex).getValue() + amount);
             result = true;
+        }
+        return result;
+    }
+    public User findUser(String passport) {
+        User result = null;
+        for (User user : deposit.keySet()) {
+            if (user.getPassport().equals(passport)) {
+                result = user;
+            }
+        }
+        return result;
+    }
+    public int findIndex(String requisites, User user) {
+        int result = 0;
+        for (int i = 0; i < deposit.get(user).size(); i++) {
+            if (deposit.get(user).get(i).getRequisites().equals(requisites)) {
+                result = i;
+            }
         }
         return result;
     }
