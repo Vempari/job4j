@@ -4,6 +4,7 @@ import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.function.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -14,6 +15,16 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(out);
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
+
+
     @Before
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
@@ -30,7 +41,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"3", item.getId(), "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.delete(item.getId()), is(false));
     }
     @Test
@@ -42,7 +53,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc", 12L));
         tracker.add(new Item("test name222", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"4", item.getId(), "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
@@ -64,7 +75,7 @@ public class StartUITest {
         tracker.add(new Item("test name3", "desc", 12L));
         tracker.add(new Item("test name4", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"5", item.getName(), "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
@@ -83,7 +94,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name33", "desc", 12L));
         ConsoleInput input = new StubInput(new String[]{"1", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(
                 new String(out.toByteArray()),
                 Is.is(
