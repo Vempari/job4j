@@ -1,4 +1,4 @@
-package ru.job4j.streamAPI;
+package ru.job4j.streamapi;
 
 import org.junit.Test;
 
@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SchoolTest {
     @Test
-    public void WhenScoreMoreThen0ButLessThen50 () {
+    public void whenScoreMoreThenZeroButLessThenFifty() {
         School school = new School();
         List<Student> list = new ArrayList<>();
         Predicate<Student> predicateA = x -> x.getScore() >= 0;
@@ -27,10 +25,10 @@ public class SchoolTest {
         list.add(new Student(45));
         list.add(new Student(-45));
         List<Student> result = school.collect(list, predicateA.and(predicateB));
-        assertThat(result.get(0).getScore(), is(5) );
+        assertThat(result.get(0).getScore(), is(5));
     }
     @Test
-    public void WhenScoreMoreThen50ButLessThen70 () {
+    public void whenScoreMoreThenFiftyButLessThenSeventy() {
         School school = new School();
         List<Student> list = new ArrayList<>();
         Predicate<Student> predicateA = x -> x.getScore() >= 50;
@@ -44,10 +42,10 @@ public class SchoolTest {
         list.add(new Student(45));
         list.add(new Student(-45));
         List<Student> result = school.collect(list, predicateA.and(predicateB));
-        assertThat(result.get(0).getScore(), is(52) );
+        assertThat(result.get(0).getScore(), is(52));
     }
     @Test
-    public void WhenScoreMoreThen70ButLessThen100 () {
+    public void whenScoreMoreThenSeventyButLessThenHundred() {
         School school = new School();
         List<Student> list = new ArrayList<>();
         Predicate<Student> predicateA = x -> x.getScore() >= 70;
@@ -61,7 +59,7 @@ public class SchoolTest {
         list.add(new Student(45));
         list.add(new Student(-45));
         List<Student> result = school.collect(list, predicateA.and(predicateB));
-        assertThat(result.get(0).getScore(), is(100) );
+        assertThat(result.get(0).getScore(), is(100));
     }
 
 }
