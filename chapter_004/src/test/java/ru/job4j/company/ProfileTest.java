@@ -20,9 +20,10 @@ public class ProfileTest {
         list.add(new Profile(new Adress("Vladivostok", "Svetlanskaya", 12, 19)));
         list.add(new Profile(new Adress("Moscow", "Petrovsko-Razumovskaya", 1, 555)));
         list.add(new Profile(new Adress("Khabarovsk", "Lenina", 11, 123)));
+        list.add(new Profile(new Adress("Khabarovsk", "Lenina", 11, 123)));
         list.add(new Profile(new Adress("Shanghai", "Nanjing Road", 33, 22)));
         List<Adress> result = profiles.collect(list);
-        assertThat(result.get(0).getCity(), is("Vladivostok"));
+        assertThat(result.get(4).getCity(), is("Vladivostok"));
 
 
     }
