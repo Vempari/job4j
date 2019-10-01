@@ -1,10 +1,7 @@
-package ru.job4j.company;
+package ru.job4j.streamapi.company;
 
 
 import org.junit.Test;
-import ru.job4j.streamapi.company.Adress;
-import ru.job4j.streamapi.company.Profile;
-import ru.job4j.streamapi.company.Profiles;
 
 import java.util.ArrayList;
 import java.util.List;
