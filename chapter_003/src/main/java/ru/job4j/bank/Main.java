@@ -1,13 +1,16 @@
 package ru.job4j.bank;
 
+import java.lang.reflect.Array;
 import java.util.*;
-
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.*;
 
 public class Main {
     HashMap<User, List<Account>> deposit = new HashMap<User, List<Account>>();
 
     public void addUser(User user) {
-        List<Account> list = new ArrayList<>();
+        ArrayList<Account> list = new ArrayList<>();
         deposit.putIfAbsent(user, list);
     }
     public void deleteUser(User user) {
