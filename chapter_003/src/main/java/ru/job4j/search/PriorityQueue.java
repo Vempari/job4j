@@ -17,7 +17,7 @@ public class PriorityQueue {
             this.tasks.add(task);
             return true;
         }
-        for (int i = 0; i < tasks.size(); i++) {
+        for (var i = 0; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 this.tasks.add(i, task);
                 return true;
